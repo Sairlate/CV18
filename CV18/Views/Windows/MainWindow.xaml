@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" mc:Ignorable="d"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:vm="clr-namespace:CV18.ViewModels"
         xmlns:l="clr-namespace:CV18"
         xmlns:cmd ="clr-namespace:CV18.Infrastructure.Comments"
@@ -14,9 +15,9 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-            <Window.Resources>
-                <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
-            </Window.Resources>
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -25,7 +26,7 @@
                     <MenuItem.Command>
                         <cmd:CloseApplicationCommand/>
                     </MenuItem.Command>
-                </MenuItem>--> 
+                </MenuItem>-->
             </MenuItem>
             <MenuItem Header="Помощь">
                 <MenuItem Header="О программе"/>
@@ -43,7 +44,9 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <Image></Image>
+                        <!--<Image></Image>-->
+                        <fa:ImageAwesome Icon="Regular_File" Height="13" Margin="0,0,5,0"
+                                         Foreground="Red"/>
                         <TextBlock Text="Вкладка 1"/>
                     </StackPanel>
                 </TabItem.Header>
@@ -53,15 +56,16 @@
                         <RowDefinition Height="325*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="157*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="125*"/>
                         <ColumnDefinition Width="637*"/>
                     </Grid.ColumnDefinitions>
                     <Rectangle Grid.Column = "0" Grid.Row="0"
-                               Margin="5,7"
+                               Margin="5,7,5,7"
                                Fill="Red" Stroke="Black" 
                                StrokeThickness="2" 
-                               RadiusX="4" RadiusY="7"/>
-                    <Ellipse Grid.Column="1" Grid.Row="0"
+                               RadiusX="4" RadiusY="7" Grid.ColumnSpan="2"/>
+                    <Ellipse Grid.Column="2" Grid.Row="0"
                              Fill="Black" Stroke="Yellow"
                              StrokeThickness="2">
                         <Ellipse.InputBindings>
@@ -69,17 +73,16 @@
                                           MouseAction="LeftDoubleClick"/>
                         </Ellipse.InputBindings>
                     </Ellipse>
-                    <GridSplitter Grid.Column="0" Grid.RowSpan="2"
-                                  HorizontalAlignment="Right"
+                    <GridSplitter Grid.Column="1" Grid.RowSpan="2"
                                   Width="4"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Вкладка 2">
                 <Grid>
-                    
+
                 </Grid>
             </TabItem>
         </TabControl>
-        
+
     </DockPanel>
 </Window>
