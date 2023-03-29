@@ -16,4 +16,3 @@ namespace TestLibFramework
         public abstract void Execute(object parameter);
     }
 }
-}

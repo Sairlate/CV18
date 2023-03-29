@@ -5,15 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:CV18.ViewModels"
         xmlns:l="clr-namespace:CV18"
+        xmlns:cmd ="clr-namespace:CV18.Infrastructure.Comments"
         Title="{Binding Title}" 
         Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Control" Key="Q" Command="{Binding CloseApplicationComand}"/>
+        <
+    </Window.InputBindings>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+            <Window.Resources>
+                <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+            </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Command="{Binding CloseApplicationComand}" />
+                <MenuItem Header="Выход" Command="{StaticResource CloseApplicationCommand}">
+                <!--<MenuItem Header="Выход">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>--> 
             </MenuItem>
             <MenuItem Header="Помощь">
                 <MenuItem Header="О программе"/>
@@ -45,7 +58,12 @@
                                RadiusX="4" RadiusY="7"/>
                     <Ellipse Grid.Column="1" Grid.Row="0"
                              Fill="Black" Stroke="Yellow"
-                             StrokeThickness="2"/>
+                             StrokeThickness="2">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CloseApplicationComand}"
+                                          MouseAction="LeftDoubleClick"/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
                     <GridSplitter Grid.Column="0" Grid.RowSpan="2"
                                   HorizontalAlignment="Right"
                                   Width="4"/>
