@@ -1,7 +1,11 @@
-﻿using CV18.ViewModels.Base;
+﻿using CV18.Infrastructure.Comments;
+using CV18.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
+using System.Windows.Input;
+
 
 namespace CV18.ViewModels
 {
@@ -37,6 +41,29 @@ namespace CV18.ViewModels
         }
 
         #endregion
+
+        #region Команды
+
+        #region CloseApplicationCommand
+        public ICommand CloseApplicationComand { get; }
+
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+
+        private void OnCloseApplicationCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+        #endregion
+
+        #endregion
+
+
+        public MainWindowViewModel()
+        {
+            #region Команды
+            CloseApplicationComand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+            #endregion
+        }
     }
 
 }
