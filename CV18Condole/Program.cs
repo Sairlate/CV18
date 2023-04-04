@@ -50,7 +50,7 @@ namespace CV18Console
             {
                 var province = row[0].Trim();
                 var contry_name = row[1].Trim(' ', '"');
-                var counts = row.Skip(4).Select(int.Parse).ToArray();
+                var counts = row.Skip(5).Select(int.Parse).ToArray();
 
                 yield return (contry_name, province, counts);
             }

@@ -6,6 +6,7 @@
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:vm="clr-namespace:CV18.ViewModels"
         xmlns:l="clr-namespace:CV18"
+        xmlns:oxy="http://oxyplot.org/wpf"
         xmlns:cmd ="clr-namespace:CV18.Infrastructure.Comments"
         Title="{Binding Title}" 
         Height="450" Width="800">
@@ -40,8 +41,20 @@
                 <ProgressBar Width="120" Height="14" Value="50"/>
             </StatusBarItem>
         </StatusBar>
-        <TabControl>
-            <TabItem>
+        <TabControl >
+            <TabItem Header="График">
+                <oxy:Plot>
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position ="Left"/>
+                        <oxy:LinearAxis Position ="Bottom"/>
+                    </oxy:Plot.Axes>
+                    <oxy:LineSeries Color="Red"
+                                    ItemsSource="{Binding TestDataPoints}"
+                                    DataFieldX="XValue"
+                                    DataFieldY="YValue"/>
+                </oxy:Plot>
+            </TabItem>
+            <TabItem Visibility="Collapsed">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <!--<Image></Image>-->
@@ -77,12 +90,6 @@
                                   Width="4"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Вкладка 2">
-                <Grid>
-
-                </Grid>
-            </TabItem>
         </TabControl>
-
     </DockPanel>
 </Window>
