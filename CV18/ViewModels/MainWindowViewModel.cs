@@ -12,6 +12,19 @@ namespace CV18.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        #region SelectedPageIndex : int - Номер выбранной вкладки
+
+        ///<summary>Номер выбранной вкладки</summary>
+        private int _SelectedPageIndex;
+        ///<summary>Номер выбранной вкладки</summary>
+        public int SelectedPageIndex
+        {
+            get => _SelectedPageIndex; 
+            set => Set(ref _SelectedPageIndex, value);
+        }
+
+        #endregion
+
         #region TestDataPoints : IEnumerable<DataPoint> - Тестовый набор данных для визуализации графиков
 
         /// <summary> Тестовый набор данных для визуализации графиков </summary>
@@ -69,6 +82,15 @@ namespace CV18.ViewModels
         }
         #endregion
 
+        public ICommand ChangeTabIndexCommand { get; }
+        private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+        private void OnChangeTabIndexCommandExecute(object p)
+        {
+            if (p is null) return;
+            SelectedPageIndex += Convert.ToInt32(p);
+        }
+
         #endregion
 
 
@@ -76,6 +98,7 @@ namespace CV18.ViewModels
         {
             #region Команды
             CloseApplicationComand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+            ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecute, CanChangeTabIndexCommandExecute);
             #endregion
 
             var data_points = new List<DataPoint>((int)(360 / 0.1)); 
