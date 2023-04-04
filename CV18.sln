@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CV18Console", "CV18Condole\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CV18WPFTest", "CV18WPFTest\CV18WPFTest.csproj", "{1BCE92E9-F901-4692-B1B3-3CF76AEEA39E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLib", "TestLib\TestLib.csproj", "{7FC3A537-B911-4B0E-9C7C-B28602FB3CF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestLib", "TestLib\TestLib.csproj", "{7FC3A537-B911-4B0E-9C7C-B28602FB3CF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibFramework", "TestLibFramework\TestLibFramework.csproj", "{85A44213-9F24-4B2F-90F3-0563412F4350}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "CV18Installer", "CV18Installer\CV18Installer.vdproj", "{BBB8B8F1-41C6-4203-B3FD-7B1B48EA68BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,8 @@ Global
 		{85A44213-9F24-4B2F-90F3-0563412F4350}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85A44213-9F24-4B2F-90F3-0563412F4350}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85A44213-9F24-4B2F-90F3-0563412F4350}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBB8B8F1-41C6-4203-B3FD-7B1B48EA68BA}.Debug|Any CPU.ActiveCfg = Debug
+		{BBB8B8F1-41C6-4203-B3FD-7B1B48EA68BA}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
