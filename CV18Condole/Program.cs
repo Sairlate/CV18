@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -29,6 +31,15 @@ namespace CV18Console
                 yield return line;
             }
         }
+
+        private static DateTime[] GetDates() => GetDataLines()
+            .First()
+            .Split(',')
+            .Skip(4)
+            .Select(s => DateTime.Parse(s, CultureInfo.InvariantCulture))
+            .ToArray();
+
+
         static void Main(string[] args)
         {
             //var client = new HttpClient();
@@ -41,8 +52,9 @@ namespace CV18Console
 
             //Console.WriteLine("Hello World!");
 
-            foreach (var data_line in GetDataLines())
-                Console.WriteLine(data_line);
+            var dates = GetDates();
+
+            Console.WriteLine(string.Join("\r\n", dates));
 
             Console.ReadLine();
         }
