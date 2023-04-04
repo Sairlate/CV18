@@ -51,7 +51,8 @@
             <StatusBarItem>
                 <ProgressBar Width="120" Height="14" Value="50"/>
             </StatusBarItem>
-            <StatusBarItem Content="{Binding SelectedPageIndex}"/>
+            <StatusBarItem Content="{Binding SelectedPageIndex}">
+            </StatusBarItem>
         </StatusBar>
         <TabControl SelectedIndex="{Binding SelectedPageIndex}">
             <TabItem Header="График">
