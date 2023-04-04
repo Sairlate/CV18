@@ -1,4 +1,5 @@
 ﻿using CV18.Infrastructure.Comments;
+using CV18.Models;
 using CV18.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,32 @@ namespace CV18.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        #region SelectedPageIndex : int - Номер выбранной вкладки
+
+        ///<summary>Номер выбранной вкладки</summary>
+        private int _SelectedPageIndex;
+        ///<summary>Номер выбранной вкладки</summary>
+        public int SelectedPageIndex
+        {
+            get => _SelectedPageIndex; 
+            set => Set(ref _SelectedPageIndex, value);
+        }
+
+        #endregion
+
+        #region TestDataPoints : IEnumerable<DataPoint> - Тестовый набор данных для визуализации графиков
+
+        /// <summary> Тестовый набор данных для визуализации графиков </summary>
+        private IEnumerable<DataPoint> _TestDataPoints;
+
+        /// <summary> Тестовый набор данных для визуализации графиков </summary>
+        public IEnumerable<DataPoint> TestDataPoints 
+        { 
+            get => _TestDataPoints; 
+            set => Set(ref _TestDataPoints, value);      
+        }
+
+        #endregion
         #region Заголовок окна
 
         private string _Title = "Анализ статистики CV18";
@@ -55,6 +82,15 @@ namespace CV18.ViewModels
         }
         #endregion
 
+        public ICommand ChangeTabIndexCommand { get; }
+        private bool CanChangeTabIndexCommandExecute(object p) => _SelectedPageIndex >= 0;
+
+        private void OnChangeTabIndexCommandExecute(object p)
+        {
+            if (p is null) return;
+            SelectedPageIndex += Convert.ToInt32(p);
+        }
+
         #endregion
 
 
@@ -62,7 +98,19 @@ namespace CV18.ViewModels
         {
             #region Команды
             CloseApplicationComand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+            ChangeTabIndexCommand = new LambdaCommand(OnChangeTabIndexCommandExecute, CanChangeTabIndexCommandExecute);
             #endregion
+
+            var data_points = new List<DataPoint>((int)(360 / 0.1)); 
+            for(var x = 0d; x <= 360; x += 0.1)
+            {
+                const double to_rad = Math.PI / 180;
+                var y = Math.Sin(x * to_rad);
+
+                data_points.Add(new DataPoint { XValue = x, YValue = y});
+            }
+
+            TestDataPoints = data_points;
         }
     }
 
